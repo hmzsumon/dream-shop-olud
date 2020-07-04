@@ -1,0 +1,19 @@
+.shop-container {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.products-container {
+    display: flex;
+    flex: 3 60rem;
+    border-right: 0.1rem solid #808080;
+}
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 20rem;
+    align-items: center;
+
+}

@@ -1,0 +1,30 @@
+.header {
+    display: grid;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+.logo img {
+    height: 8rem;
+    padding: 1rem
+}
+
+.header nav {
+    background-color: #203040;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+.header nav a {
+    color: #ffffff;
+    margin: 0 1rem;
+}
+
+.header nav a:hover {
+    color: #ff8000;
+}
