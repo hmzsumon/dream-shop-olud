@@ -1,5 +1,6 @@
 import React from 'react';
 import './Cart.css';
+import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
   const cart = props.cart;
@@ -30,28 +31,37 @@ const Cart = (props) => {
     <div className="cart">
       <h3>Order Summary</h3>
       <p>Items Ordered: {cart.length}</p>
-      <table>
-        <tr>
-          <td>Items:</td>
-          <td>$ {price}</td>
-        </tr>
-        <tr>
-          <td>Shipping & Handling:</td>
-          <td>$ {shipping}</td>
-        </tr>
-        <tr>
-          <td>Total before Tax:</td>
-          <td>$ {beforeTax}</td>
-        </tr>
-        <tr>
-          <td>Estimated Tax:</td>
-          <td>$ {tax}</td>
-        </tr>
-        <tr className="total-row">
-          <td>Order Total:</td>
-          <td>$ {total}</td>
-        </tr>
-      </table>
+      <div className="summary">
+        <li className="title">
+          <div>Items:</div>
+          <div>Price:</div>
+        </li>
+
+        <li>
+          <div>Items Price:</div>
+          <div>$ {price}</div>
+        </li>
+        <li>
+          <div>Shipping & Hendling:</div>
+          <div>$ {shipping}</div>
+        </li>
+        <li>
+          <div>Bfore Tax:</div>
+          <div>$ {beforeTax}</div>
+        </li>
+        <li>
+          <div>Tax:</div>
+          <div>$ {tax}</div>
+        </li>
+        <li className="total">
+          <div>Total:</div>
+          <div>$ {total}</div>
+        </li>
+      </div>
+
+      <Link to="/review">
+        <button className="button primary">Review Order</button>
+      </Link>
     </div>
   );
 };

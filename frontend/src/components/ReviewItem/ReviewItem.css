@@ -1,0 +1,44 @@
+.review {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem;
+    border-bottom: .1rem solid #203040;
+    margin: 1rem;
+
+}
+
+.review img {
+    flex: 5;
+    max-width: 10rem;
+    max-height: 10rem;
+}
+
+.review .name {}
+
+.review .quentity {}
+
+
+.review li {
+    list-style: none;
+    margin: 1rem;
+}
+
+.review li:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.review li:last-child div {
+    margin-bottom: 1rem;
+}
+
+.review .price {
+    color: #b12704;
+    font-weight: bold;
+}
+
+.review button {
+    width: 20rem;
+}

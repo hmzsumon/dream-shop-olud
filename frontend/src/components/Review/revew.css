@@ -1,0 +1,14 @@
+.review-container {
+    display: flex;
+
+}
+
+.review-items {
+    flex: 3;
+    border-right: .1rem solid #203040;
+}
+
+.review-cart {
+    flex: 1;
+    padding: 0 1rem;
+}
