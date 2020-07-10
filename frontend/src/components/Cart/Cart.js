@@ -59,9 +59,7 @@ const Cart = (props) => {
         </li>
       </div>
 
-      <Link to="/review">
-        <button className="button primary">Review Order</button>
-      </Link>
+      {props.children}
     </div>
   );
 };
