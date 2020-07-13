@@ -1,17 +1,38 @@
 import React from 'react';
 import logo from '../../images/logo.png';
 import './Header.css';
+import { useAuth } from '../Login/useAuth';
 
 const Header = () => {
+  const auth = useAuth();
+
   return (
     <div className="header">
       <div className="logo">
         <img src={logo} alt="" />
       </div>
       <nav>
-        <a href="/shop">Shop</a>
-        <a href="/review">Order Review</a>
-        <a href="/inventory">Manage Inventory</a>
+        <ul className="nav-bar">
+          <li>
+            <a href="/shop">Shop</a>
+          </li>
+          <li>
+            <a href="/review">Order Review</a>
+          </li>
+          <li>
+            <a href="/inventory">Manage Inventory</a>
+          </li>
+        </ul>
+        <div className="user-area">
+          <li>
+            {auth.user && <a href="/login">{auth.user.name}</a>}
+            {auth.user ? (
+              <a href="/login">Sign Out</a>
+            ) : (
+              <a href="/login">Sign In</a>
+            )}
+          </li>
+        </div>
       </nav>
     </div>
   );

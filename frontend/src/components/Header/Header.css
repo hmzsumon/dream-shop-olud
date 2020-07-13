@@ -2,6 +2,10 @@
     display: grid;
 }
 
+.header li {
+    list-style: none;
+}
+
 .logo {
     display: flex;
     justify-content: center;
@@ -13,11 +17,16 @@
 }
 
 .header nav {
+    display: flex;
     background-color: #203040;
     padding: 1.5rem;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
 
+}
+
+.nav-bar {
+    display: flex;
 }
 
 .header nav a {
@@ -27,4 +36,8 @@
 
 .header nav a:hover {
     color: #ff8000;
+}
+
+.user-area {
+    color: #ffffff;
 }

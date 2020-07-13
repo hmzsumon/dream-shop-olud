@@ -1,0 +1,37 @@
+.shipment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shipment-form {
+    padding: 1rem;
+    margin: 1rem;
+    width: 35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.1rem solid #c0c0c0;
+    border-radius: .3rem;
+}
+
+.shipment-form li {
+    width: 33rem;
+    display: flex;
+    flex-direction: column;
+    margin: .7rem 0;
+}
+
+input {
+    padding: 1rem;
+    border: 0.1rem solid #c0c0c0;
+    border-radius: 0.3rem;
+}
+
+.ship-error {
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: .5rem;
+}

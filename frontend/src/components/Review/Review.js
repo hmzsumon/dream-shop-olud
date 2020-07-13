@@ -2,23 +2,26 @@ import React, { useState, useEffect } from 'react';
 import {
   getDatabaseCart,
   removeFromDatabaseCart,
-  processOrder,
+  // processOrder,
 } from '../../utilities/databaseManager';
 import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 import './revew.css';
 import happyimg from '../../images/giphy.gif';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../Login/useAuth';
 
 const Review = () => {
   const [cart, setCart] = useState([]);
-  const [placeOrder, setPlaceOrder] = useState(false);
+  const [placeOrder] = useState(false);
+  const auth = useAuth();
 
-  const handlePlaceOrder = () => {
-    setCart([]);
-    setPlaceOrder(true);
-    processOrder();
-  };
+  // const handlePlaceOrder = () => {
+  //   setCart([]);
+  //   setPlaceOrder(true);
+  //   processOrder();
+  // };
 
   const removeProduct = (productKey) => {
     console.log('remove', productKey);
@@ -54,13 +57,22 @@ const Review = () => {
           ></ReviewItem>
         ))}
         {thankyou}
+        {!cart.length && (
+          <h2>
+            Your Cart is empty. <Link to="/shop">Keep Shopping</Link>
+          </h2>
+        )}
       </div>
 
       <div className="review-cart">
         <Cart cart={cart}>
-          <button onClick={handlePlaceOrder} className="button primary">
-            Place Order
-          </button>
+          <Link to="/shipment">
+            {auth.user ? (
+              <button className="button primary">Proceed to Checkout</button>
+            ) : (
+              <button className="button primary"> LogIn to Proceed</button>
+            )}
+          </Link>
         </Cart>
       </div>
     </div>
