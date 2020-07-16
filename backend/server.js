@@ -46,7 +46,7 @@ app.post('/addProduct', (req, res) => {
   client = new MongoClient(uri, { useNewUrlParser: true });
   const product = req.body;
   client.connect((err) => {
-    const collection = client.db('onlinestore').collection('products');
+    const collection = client.db('Dream-Shop').collection('products');
     collection.insertOne(product, (err, result) => {
       console.log('successfully inserted', result);
       if (err) {
