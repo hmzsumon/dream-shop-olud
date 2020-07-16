@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import fakeData from '../../fakeData';
 import './Shop.css';
 import Product from '../Product/Product';
 import Cart from '../Cart/Cart';
@@ -25,13 +24,15 @@ const Shop = () => {
   useEffect(() => {
     const saveCart = getDatabaseCart();
     const productKeys = Object.keys(saveCart);
-    const previousCart = productKeys.map((existingKey) => {
-      const product = fakeData.find((pd) => pd.key === existingKey);
-      product.quentity = saveCart[existingKey];
-      return product;
-    });
-    setCart(previousCart);
-  }, []);
+    if (products.length) {
+      const previousCart = productKeys.map((existingKey) => {
+        const product = products.find((pd) => pd.key === existingKey);
+        product.quentity = saveCart[existingKey];
+        return product;
+      });
+      setCart(previousCart);
+    }
+  }, [products]);
 
   const handleAddProduct = (product) => {
     const toBeAddedKey = product.key;
