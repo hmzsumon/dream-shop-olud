@@ -19,18 +19,15 @@ const users = ['Sumon', 'Korim', 'Alim'];
 app.get('/products', (req, res) => {
   client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect((err) => {
-    const collection = client.db('onlinestore').collection('products');
-    collection
-      .find()
-      .limit(10)
-      .toArray((err, documents) => {
-        if (err) {
-          console.log(err);
-          res.status(500).send({ message: err });
-        } else {
-          res.send(documents);
-        }
-      });
+    const collection = client.db('Dream-Shop').collection('products');
+    collection.find().toArray((err, documents) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send({ message: err });
+      } else {
+        res.send(documents);
+      }
+    });
     client.close();
   });
 });

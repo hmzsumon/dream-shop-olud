@@ -10,9 +10,17 @@ import {
 import { Link } from 'react-router-dom';
 
 const Shop = () => {
-  const first10 = fakeData.slice(0, 10);
-  const [products] = useState(first10);
+  const [products, setProduct] = useState([]);
   const [cart, setCart] = useState([]);
+
+  //fetch data from db
+  useEffect(() => {
+    fetch('http://localhost:4200/products')
+      .then((res) => res.json())
+      .then((data) => {
+        setProduct(data);
+      });
+  }, []);
 
   useEffect(() => {
     const saveCart = getDatabaseCart();
