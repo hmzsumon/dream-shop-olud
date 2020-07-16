@@ -50,6 +50,25 @@ app.get('/product/:key', (req, res) => {
   });
 });
 
+//get product by keys api
+app.post('/getProductsByKey', (req, res) => {
+  const key = req.params.key;
+  const productKey = req.body;
+  client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect((err) => {
+    const collection = client.db('Dream-Shop').collection('products');
+    collection.find({ key: { $in: productKey } }).toArray((err, documents) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send({ message: err });
+      } else {
+        res.send(documents);
+      }
+    });
+    client.close();
+  });
+});
+
 //post request
 app.post('/addProduct', (req, res) => {
   client = new MongoClient(uri, { useNewUrlParser: true });

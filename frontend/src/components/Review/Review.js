@@ -4,7 +4,6 @@ import {
   removeFromDatabaseCart,
   // processOrder,
 } from '../../utilities/databaseManager';
-import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 import './Review.css';
@@ -34,12 +33,24 @@ const Review = () => {
     // cart
     const saveCart = getDatabaseCart();
     const productKeys = Object.keys(saveCart);
-    const cartProducts = productKeys.map((key) => {
-      const product = fakeData.find((pd) => pd.key === key);
-      product.quentity = saveCart[key];
-      return product;
-    });
-    setCart(cartProducts);
+    console.log(productKeys);
+    fetch('http://localhost:4200/getProductsByKey', {
+      method: 'POST',
+      body: JSON.stringify(productKeys),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const cartProducts = productKeys.map((key) => {
+          const product = data.find((pd) => pd.key === key);
+          product.quentity = saveCart[key];
+          return product;
+        });
+        setCart(cartProducts);
+      });
   }, []);
 
   let thankyou;
