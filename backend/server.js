@@ -47,7 +47,7 @@ app.post('/addProduct', (req, res) => {
   const product = req.body;
   client.connect((err) => {
     const collection = client.db('Dream-Shop').collection('products');
-    collection.insertOne(product, (err, result) => {
+    collection.insert(product, (err, result) => {
       console.log('successfully inserted', result);
       if (err) {
         console.log(err);

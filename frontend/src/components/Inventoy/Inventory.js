@@ -2,7 +2,7 @@ import React from 'react';
 import fakeData from '../../fakeData/';
 function Inventory() {
   const hndleAddProduct = () => {
-    const product = fakeData[0];
+    const product = fakeData;
     console.log(product);
     fetch('http://localhost:4200/addProduct', {
       method: 'POST',
