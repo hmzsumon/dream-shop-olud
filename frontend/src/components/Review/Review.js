@@ -33,7 +33,7 @@ const Review = () => {
     // cart
     const saveCart = getDatabaseCart();
     const productKeys = Object.keys(saveCart);
-    console.log(productKeys);
+
     fetch('http://localhost:4200/getProductsByKey', {
       method: 'POST',
       body: JSON.stringify(productKeys),
@@ -43,7 +43,6 @@ const Review = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         const cartProducts = productKeys.map((key) => {
           const product = data.find((pd) => pd.key === key);
           product.quentity = saveCart[key];
