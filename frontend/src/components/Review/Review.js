@@ -2,25 +2,17 @@ import React, { useState, useEffect } from 'react';
 import {
   getDatabaseCart,
   removeFromDatabaseCart,
-  // processOrder,
 } from '../../utilities/databaseManager';
+
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 import './Review.css';
-import happyimg from '../../images/giphy.gif';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../Login/useAuth';
 
 const Review = () => {
   const [cart, setCart] = useState([]);
-  const [placeOrder] = useState(false);
   const auth = useAuth();
-
-  // const handlePlaceOrder = () => {
-  //   setCart([]);
-  //   setPlaceOrder(true);
-  //   processOrder();
-  // };
 
   const removeProduct = (productKey) => {
     console.log('remove', productKey);
@@ -52,10 +44,6 @@ const Review = () => {
       });
   }, []);
 
-  let thankyou;
-  if (placeOrder) {
-    thankyou = <img src={happyimg} alt="" />;
-  }
   return (
     <div className="review-container">
       <div className="review-items">
@@ -66,7 +54,6 @@ const Review = () => {
             product={pd}
           ></ReviewItem>
         ))}
-        {thankyou}
 
         <div className="review-empty-wrapper">
           {!cart.length && (

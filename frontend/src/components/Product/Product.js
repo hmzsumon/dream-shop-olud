@@ -46,11 +46,12 @@ const Product = (props) => {
             <div className="features">
               <h4>Features:</h4>
               <ul>
-                {features.map((pd, key) => (
-                  <li key={key}>
-                    {pd.description}: <strong>{pd.value}</strong>
-                  </li>
-                ))}
+                {features &&
+                  features.map((pd, key) => (
+                    <li key={key}>
+                      {pd.description}: <strong>{pd.value}</strong>
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>
