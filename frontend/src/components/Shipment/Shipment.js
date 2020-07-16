@@ -7,11 +7,17 @@ import { getDatabaseCart, processOrder } from '../../utilities/databaseManager';
 const Shipment = () => {
   const auth = useAuth();
   const { register, handleSubmit, errors } = useForm();
+
+  //submit handler
   const onSubmit = (data) => {
     console.log(data);
     //TODO: Move this aftr payment
     const sevedCart = getDatabaseCart();
-    const orderDetails = { email: auth.user.email, cart: sevedCart };
+    const orderDetails = {
+      email: auth.user.email,
+      cart: sevedCart,
+      shipment: data,
+    };
     fetch('http://localhost:4200/placeOrder', {
       method: 'POST',
       body: JSON.stringify(orderDetails),
@@ -20,8 +26,8 @@ const Shipment = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => {
-        alert('Your Order Successfully Placed with order id:' + data._id);
+      .then((order) => {
+        alert('Your Order Successfully Placed with order id:' + order._id);
         processOrder();
       });
   };
@@ -102,6 +108,17 @@ const Shipment = () => {
             />
             {errors.zippCode && (
               <span className="ship-error">Zipp Code is required</span>
+            )}
+          </li>
+
+          <li>
+            <input
+              name="mobileNum"
+              ref={register({ required: true })}
+              placeholder="mobile number:"
+            />
+            {errors.mobileNum && (
+              <span className="ship-error">Mobile Number is required</span>
             )}
           </li>
 
