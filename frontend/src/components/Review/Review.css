@@ -1,0 +1,38 @@
+.review-container {
+  display: flex;
+}
+
+.review-items {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  border-right: 0.1rem solid #203040;
+}
+
+.review-empty-wrapper {
+  height: 70vh;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.review-empty li {
+  list-style: none;
+  margin: 1rem 0;
+}
+.review-items .fa-shopping-cart {
+  font-size: 10rem;
+  color: #ff8000;
+}
+
+.review-cart {
+  flex: 1;
+  padding: 0 1rem;
+}

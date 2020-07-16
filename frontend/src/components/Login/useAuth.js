@@ -50,10 +50,8 @@ const getUser = (user) => {
 
 const Auth = () => {
   const [user, setUser] = useState(null);
-
+  const provider = new firebase.auth.GoogleAuthProvider();
   const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-
     return firebase
       .auth()
       .signInWithPopup(provider)

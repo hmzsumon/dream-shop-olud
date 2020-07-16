@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../images/logo.png';
+import logo from '../../images/images.png';
 import './Header.css';
 import { useAuth } from '../Login/useAuth';
 
@@ -25,7 +25,13 @@ const Header = () => {
         </ul>
         <div className="user-area">
           <li>
-            {auth.user && <a href="/login">{auth.user.name}</a>}
+            {auth.user && (
+              <a href="/login">
+                {' '}
+                <i className="fa fa-user" aria-hidden="true"></i>{' '}
+                {auth.user.name}
+              </a>
+            )}
             {auth.user ? (
               <a href="/login">Sign Out</a>
             ) : (

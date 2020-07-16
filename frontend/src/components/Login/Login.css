@@ -1,0 +1,10 @@
+.login-coantainer {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.login-coantainer div {
+    margin: 1rem 0;
+}

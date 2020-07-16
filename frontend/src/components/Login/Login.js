@@ -1,5 +1,7 @@
 import React from 'react';
 import Auth from './useAuth';
+import './Login.css';
+import imgGoogle from '../../images/google.png';
 
 const Login = () => {
   const auth = Auth();
@@ -19,13 +21,23 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>This is Login</h1>
-      {auth.user ? (
-        <button onClick={handleSignOut}>Sign Out</button>
-      ) : (
-        <button onClick={handleSignIn}>Sign With Google</button>
-      )}
+    <div className="login-coantainer">
+      <div className="login-area">
+        <div>
+          <img src={imgGoogle} alt="" />
+        </div>
+        <div>
+          {auth.user ? (
+            <button className="button primary" onClick={handleSignOut}>
+              Sign Out
+            </button>
+          ) : (
+            <button className="button primary" onClick={handleSignIn}>
+              Sign In With Google
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

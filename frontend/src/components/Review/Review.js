@@ -7,7 +7,7 @@ import {
 import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
-import './revew.css';
+import './Review.css';
 import happyimg from '../../images/giphy.gif';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../Login/useAuth';
@@ -57,11 +57,21 @@ const Review = () => {
           ></ReviewItem>
         ))}
         {thankyou}
-        {!cart.length && (
-          <h2>
-            Your Cart is empty. <Link to="/shop">Keep Shopping</Link>
-          </h2>
-        )}
+
+        <div className="review-empty-wrapper">
+          {!cart.length && (
+            <div className="review-empty">
+              <li className="review-header">
+                <h4>
+                  Your Cart is empty. <Link to="/shop">Keep Shopping</Link>
+                </h4>
+              </li>
+              <li className="cart-icon">
+                <i className="fa fa-shopping-cart"></i>
+              </li>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="review-cart">
