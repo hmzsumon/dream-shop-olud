@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import './checkoutForm.css';
 
-const CheckoutForm = () => {
+const CheckoutForm = (props) => {
   const stripe = useStripe();
   const elements = useElements();
   const [paymentError, setPaymentError] = useState(null);
@@ -21,6 +21,8 @@ const CheckoutForm = () => {
       setPaymentSuccess(null);
     } else {
       setPaymentSuccess(paymentMethod);
+      const payment = { id: paymentMethod.id, last4: paymentMethod.card.last4 };
+      props.handleplaceOrder(payment);
       setPaymentError(null);
     }
   };

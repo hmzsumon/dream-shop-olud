@@ -8,22 +8,28 @@ import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../checkoutForm/checkoutForm';
 
 const Shipment = () => {
-  const [shipInfoAdded, setShipInfoAdded] = useState(false);
   const auth = useAuth();
   const { register, handleSubmit, errors } = useForm();
+  const [shipInfo, setShipInfo] = useState(false);
+  const [orderId, setOrderId] = useState(null);
+
   const stripePromise = loadStripe(
     'pk_test_51H5aTtERG3pC1iKYYA7blXv14MVLsZlUY1BC8hexOrpzEWFdi09R3361Phnj4pS7Sls0fqySkiYdX1fZ7PtOCued00aq3Vb5wn'
   );
 
   //submit handler
   const onSubmit = (data) => {
-    console.log(data);
+    setShipInfo(data);
+  };
+
+  const handleplaceOrder = (payment) => {
     //TODO: Move this aftr payment
     const sevedCart = getDatabaseCart();
     const orderDetails = {
       email: auth.user.email,
       cart: sevedCart,
-      shipment: data,
+      shipment: shipInfo,
+      payment: payment,
     };
     fetch('http://localhost:4200/placeOrder', {
       method: 'POST',
@@ -34,19 +40,15 @@ const Shipment = () => {
     })
       .then((res) => res.json())
       .then((order) => {
-        setShipInfoAdded(true);
-        // alert('Your Order Successfully Placed with order id:' + order._id);
-        // processOrder();
+        setOrderId(order._id);
+        processOrder();
       });
   };
 
   return (
     <div className="shipment-wrapper">
       {/* START ORDER */}
-      <div
-        style={{ display: shipInfoAdded && 'none' }}
-        className="order-container"
-      >
+      <div style={{ display: shipInfo && 'none' }} className="order-container">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h3>Billing Address</h3>
           <ul className="order-form">
@@ -177,15 +179,22 @@ const Shipment = () => {
 
       {/* PAYMENT FORM */}
       <div
-        style={{ display: shipInfoAdded ? 'block' : 'none' }}
+        style={{ display: shipInfo ? 'block' : 'none' }}
         className="payment-container"
       >
         <h3>Payment Information</h3>
         <div>
           <Elements stripe={stripePromise}>
-            <CheckoutForm></CheckoutForm>
+            <CheckoutForm handleplaceOrder={handleplaceOrder}></CheckoutForm>
           </Elements>
         </div>
+        {orderId && (
+          <div>
+            {' '}
+            <h3>Than You For Shipping With us</h3>
+            <p> Your Order Id is: {orderId}</p>
+          </div>
+        )}
       </div>
     </div>
   );
