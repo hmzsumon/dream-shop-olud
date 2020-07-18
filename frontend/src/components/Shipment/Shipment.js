@@ -31,7 +31,7 @@ const Shipment = () => {
       shipment: shipInfo,
       payment: payment,
     };
-    fetch('http://localhost:4200/placeOrder', {
+    fetch('https://sleepy-scrubland-24977.herokuapp.com/placeOrder', {
       method: 'POST',
       body: JSON.stringify(orderDetails),
       headers: {
@@ -191,7 +191,7 @@ const Shipment = () => {
         {orderId && (
           <div>
             {' '}
-            <h3>Than You For Shipping With us</h3>
+            <h3>Thank You For Shipping With us</h3>
             <p> Your Order Id is: {orderId}</p>
           </div>
         )}

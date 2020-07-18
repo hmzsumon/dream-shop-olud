@@ -14,7 +14,7 @@ const Shop = () => {
 
   //fetch data from db
   useEffect(() => {
-    fetch('http://localhost:4200/products')
+    fetch('https://sleepy-scrubland-24977.herokuapp.com/products')
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);

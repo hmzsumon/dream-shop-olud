@@ -77,7 +77,9 @@
 
 /* payment */
 .payment-container {
-  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 5rem;
 }
 
 .payment-container h3 {

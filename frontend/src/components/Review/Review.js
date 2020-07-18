@@ -26,7 +26,7 @@ const Review = () => {
     const saveCart = getDatabaseCart();
     const productKeys = Object.keys(saveCart);
 
-    fetch('http://localhost:4200/getProductsByKey', {
+    fetch('https://sleepy-scrubland-24977.herokuapp.com/getProductsByKey', {
       method: 'POST',
       body: JSON.stringify(productKeys),
       headers: {
